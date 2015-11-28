@@ -41,34 +41,59 @@ class RattusTest {
     boolean down;
     subject = new Rattus();
 
-    //Agitate empty array down
     subject.agitate(false);
+    System.out.println("\tAgitate empty array down...");
     if (countTrues(subject.getAgit()) != 0) {
-      System.out.println("Agitate down from all false should return all false");
+      System.out.println("\tAgitate down from all false should return all false");
       return false;
     }
 
-    //Agitate empty array up
     subject.agitate(true);
+    System.out.println("\tAgitate empty array up");
     if (countTrues(subject.getAgit()) != 1){
-      System.out.println("Agitate up from all false should have 1 true");
+      System.out.println("\tAgitate up from all false should have 1 true");
       return false;
     }
 
-    //Agitate array with one true down
     subject.agitate(false);
+    System.out.println("\tAgitate array with one true down");
     if (countTrues(subject.getAgit()) != 0){
-      System.out.println("Agitate down from 1 true should have no trues");
+      System.out.println("\tAgitate down from 1 true should have no trues");
       return false;
     }
 
-    //Agitate full array up
     for (int i = 0; i < agitDim; i++) {
       subject.agitate(true);
     }
     subject.agitate(true);
+    System.out.println("\tAgitate full array up");
     if (countTrues(subject.getAgit()) != agitDim) {
-      System.out.println("Agitate full array up should return full array");
+      System.out.println("\tAgitate full array up should return full array");
+      return false;
+    }
+
+    return true;
+  }
+
+  public boolean interpretTest() {
+    subject = new Rattus();
+
+    subject.interpret(new double[] {-2.4});
+    if (countTrues(subject.getAgit()) != 1) {
+      System.out.println("Did not agitate on input");
+      return false;
+    }
+
+    subject.interpret(new double[] {0.6});
+    if (countTrues(subject.getAgit()) != 0) {
+      System.out.println("Did not deagitate on input");
+      return false;
+    }
+
+    subject.agitate(true);
+    subject.interpret(new double[] {0.7});
+    if (countTrues(subject.getAgit()) != 1) {
+      System.out.println("Improperly agitated");
       return false;
     }
 
@@ -76,8 +101,29 @@ class RattusTest {
   }
 
   public Test[] allTests = new Test[] {
-    new Test() {public boolean test() {return getAgitTest();} },
-    new Test() {public boolean test() {return rattusStartsEmptyTest();} },
-    new Test() {public boolean test() {return agitateTest();} }
+    new Test() {
+      public boolean test() {
+        System.out.println("getAgitTest...");
+        return getAgitTest();
+      }
+    },
+    new Test() {
+      public boolean test() {
+        System.out.println("rattusStartsEmptyTest...");
+        return rattusStartsEmptyTest();
+      }
+    },
+    new Test() {
+      public boolean test() {
+        System.out.println("agitateTest...");
+        return agitateTest();
+      }
+    },
+    new Test() {
+      public boolean test() {
+        System.out.println("interpretTest...");
+        return interpretTest();
+      }
+    }
   };
 }

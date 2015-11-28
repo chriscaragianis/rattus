@@ -10,9 +10,11 @@ class Rattus {
     agit = new boolean[agitDim];
     rand = new Random();
   }
+
   public boolean[] getAgit(){
     return agit;
   }
+
   public void agitate(boolean direction) {
     int index = rand.nextInt(agitDim);
     int origin = index;
@@ -23,6 +25,19 @@ class Rattus {
         agit[index] = direction;
         return;
       }
-    } while (index != origin - 1);
+    } while (index != origin);
   }
+
+  public void interpret(double[] input) {
+    double norm = 0;
+    for (double v : input) {
+      norm += Math.abs(v);
+    }
+    if (norm % 1 < 0.5) {
+      agitate(true);
+    } else if (norm % 1 < 0.65) {
+      agitate(false);
+    }
+  }
+
 }
