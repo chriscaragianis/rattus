@@ -1,15 +1,24 @@
+const agitDim = 5;
 var agit = [false, false, false, false, false];
+var getAgit = function() {return agit;};
+
+var reset = function () {
+  agit = [];
+  for (var i = 0; i < agitDim; i += 1) {
+    agit.push(false);
+  }
+}
 
 var agitate = function(direction) {
-  var index = Math.floor(Math.random() * 5);
+  var index = Math.floor(Math.random() * agitDim);
   var origin = index;
   do {
     if ((agit[index] && direction) || (!agit[index] && !direction)) {
       index = (index + 1) % agitDim;
     } else {
-        agit[index] = direction;
-        return;
-      }
+      agit[index] = direction;
+      return;
+    }
   } while (index != origin);
 };
 
@@ -25,8 +34,11 @@ var interpret = function(input) {
     }
 };
 
+/*
 module.exports = {
-  agit: agit,
+  getAgit: getAgit,
   agitate: agitate,
-  interpret: interpret
+  interpret: interpret,
+  reset: reset
 }
+*/
