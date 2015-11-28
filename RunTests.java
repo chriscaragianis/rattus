@@ -1,3 +1,6 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
 class RunTests {
 
   public static void main(String[] args) {
@@ -12,5 +15,13 @@ class RunTests {
       }
     }
     System.out.println(passCount + " of " + testCount + " tests passing.");
+
+    Rattus rat = new Rattus();
+    Scanner input = new Scanner(System.in);
+    while (true) {
+      double message = input.nextDouble();
+      rat.interpret(new double[] {message});
+      System.out.println("\t" + Arrays.toString(rat.getAgit()));
+    }
   }
 }
