@@ -41,3 +41,26 @@ describe ("Agitates properly", function() {
     expect(countTrues(getAgit())).to.equal(agitDim);
   })
 });
+
+describe("Interprets properly", function() {
+  it ("should agitate on 0 >= x > 0.5", function() {
+    reset();
+    interpret([0]);
+    expect(countTrues(getAgit())).to.equal(1);
+    interpret([0.499]);
+    expect(countTrues(getAgit())).to.equal(2);
+  });
+  it ("should deagitate on 0.5 >= x > 0.65", function() {
+    interpret([0.5]);
+    expect(countTrues(getAgit())).to.equal(1);
+    interpret([0.649]);
+    expect(countTrues(getAgit())).to.equal(0);
+  });
+  it ("should not agitate on 0.65 <= x < 1", function() {
+    agitate(true);
+    interpret([0.65]);
+    expect(countTrues(getAgit())).to.equal(1);
+    interpret([0.999]);
+    expect(countTrues(getAgit())).to.equal(1);
+  })
+});
