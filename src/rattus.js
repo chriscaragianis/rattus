@@ -33,12 +33,3 @@ var interpret = function(input) {
       agitate(false);
     }
 };
-
-/*
-module.exports = {
-  getAgit: getAgit,
-  agitate: agitate,
-  interpret: interpret,
-  reset: reset
-}
-*/
