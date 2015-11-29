@@ -1,4 +1,8 @@
-var inter;
+var colorInterval;
+var positionInterval;
+var positionTimeout;
+var top = $('#rat').css('top');
+var left = $('#rat').css('left');
 var agitActions = [
   function(index) {
     var pics = [  "img/rat1.png",
@@ -8,13 +12,13 @@ var agitActions = [
                   "img/rat5.png"];
     var count = 0;
     if (agit[index]) {
-      clearInterval(inter);
-      inter = setInterval(function() {
+      clearInterval(colorInterval);
+      colorInterval = setInterval(function() {
         $('#rat').attr('src', pics[count]);
         count = (count + 1) % pics.length;
       }, 100);
     } else {
-      clearInterval(inter);
+      clearInterval(colorInterval);
       $('#rat').attr('src', pics[0]);
     }
   },
@@ -27,9 +31,17 @@ var agitActions = [
   },
   function(index) {
     if (agit[index]) {
-      $($('li').get(index)).css('color', 'red');
+      var up = (Math.random() * 16) - 8;
+      var left = (Math.random() * 16) - 8;
+      clearInterval(positionInterval);
+      positionInterval = setInterval(function() {
+        $('#rat').css('transform', 'translate(' + up + 'px, ' + left +'px)');
+        positionTimeout = setTimeout(function() {
+        $('#rat').css('transform', 'translate(0,0)');
+        }, 90);
+      }, 99);
     } else {
-      $($('li').get(index)).css('color', 'green');
+      clearInterval(positionInterval);
     }
   },
   function(index) {
