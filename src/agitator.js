@@ -8,9 +8,7 @@ var agitActions = [
                   "img/rat5.png"];
     var count = 0;
     if (agit[index]) {
-      if (inter) {
-        return;
-      }
+      clearInterval(inter);
       inter = setInterval(function() {
         $('#rat').attr('src', pics[count]);
         count = (count + 1) % pics.length;
