@@ -1,11 +1,44 @@
-//var rattus = require("js");
+var agitActions = [
+  function(index) {
+    if (getAgit()[index]) {
+      $($('li').get(index)).css('color', 'red');
+    } else {
+      $($('li').get(index)).css('color', 'green');
+    }
+  },
+  function(index) {
+    if (getAgit()[index]) {
+      $($('li').get(index)).css('color', 'red');
+    } else {
+      $($('li').get(index)).css('color', 'green');
+    }
+  },
+  function(index) {
+    if (getAgit()[index]) {
+      $($('li').get(index)).css('color', 'red');
+    } else {
+      $($('li').get(index)).css('color', 'green');
+    }
+  },
+  function(index) {
+    if (getAgit()[index]) {
+      $($('li').get(index)).css('color', 'red');
+    } else {
+      $($('li').get(index)).css('color', 'green');
+    }
+  },
+  function(index) {
+    if (getAgit()[index]) {
+      $($('li').get(index)).css('color', 'red');
+    } else {
+      $($('li').get(index)).css('color', 'green');
+    }
+  }
+]
+
 var updateRat = function() {
   $('li').each(function(index) {
-    if (getAgit()[index]) {
-      $(this).css('color', 'red');
-    } else {
-      $(this).css('color', 'green');
-    }
+    agitActions[index](index);
   });
 };
 
