@@ -20,9 +20,9 @@ var agitActions = [
   },
   function(index) {
     if (agit[index]) {
-      $($('li').get(index)).css('color', 'red');
+      $('#caption').css('display', 'block');
     } else {
-      $($('li').get(index)).css('color', 'green');
+      $('#caption').css('display', 'none');
     }
   },
   function(index) {
