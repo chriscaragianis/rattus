@@ -1,34 +1,48 @@
+var inter;
 var agitActions = [
   function(index) {
-    if (getAgit()[index]) {
+    var pics = [  "img/rat1.png",
+                  "img/rat2.png",
+                  "img/rat3.png",
+                  "img/rat4.png",
+                  "img/rat5.png"];
+    var count = 0;
+    if (agit[index]) {
+      if (inter) {
+        return;
+      }
+      inter = setInterval(function() {
+        $('#rat').attr('src', pics[count]);
+        count = (count + 1) % pics.length;
+      }, 100);
+    } else {
+      clearInterval(inter);
+      $('#rat').attr('src', pics[0]);
+    }
+  },
+  function(index) {
+    if (agit[index]) {
       $($('li').get(index)).css('color', 'red');
     } else {
       $($('li').get(index)).css('color', 'green');
     }
   },
   function(index) {
-    if (getAgit()[index]) {
+    if (agit[index]) {
       $($('li').get(index)).css('color', 'red');
     } else {
       $($('li').get(index)).css('color', 'green');
     }
   },
   function(index) {
-    if (getAgit()[index]) {
+    if (agit[index]) {
       $($('li').get(index)).css('color', 'red');
     } else {
       $($('li').get(index)).css('color', 'green');
     }
   },
   function(index) {
-    if (getAgit()[index]) {
-      $($('li').get(index)).css('color', 'red');
-    } else {
-      $($('li').get(index)).css('color', 'green');
-    }
-  },
-  function(index) {
-    if (getAgit()[index]) {
+    if (agit[index]) {
       $($('li').get(index)).css('color', 'red');
     } else {
       $($('li').get(index)).css('color', 'green');
@@ -37,17 +51,12 @@ var agitActions = [
 ]
 
 var updateRat = function() {
-  $('li').each(function(index) {
-    agitActions[index](index);
-  });
+  for (var v in agitActions) {
+    agitActions[v](v);
+  }
 };
 
-$('input').click(function() {
-  if ($(this).hasClass('up')) {
-    agitate(true);
-  }
-  if ($(this).hasClass('down')) {
-    agitate(false);
-  }
+$('input[type="button"]').click(function() {
+  interpret([parseFloat($('.norm').val())]);
   updateRat();
 });
