@@ -1,11 +1,6 @@
-var assert = require("assert");
-var rattus = require("../rattus.js");
-
-const agitDim = 5;
-
 var countTrues = function(arr) {
   var count = 0;
-  for (v in arr) {
+  for (var v in arr) {
     if (arr[v]) {
       count += 1;
     }
@@ -15,34 +10,34 @@ var countTrues = function(arr) {
 
 describe ("Getting the rattus", function() {
   it ("should be empty on reset", function() {
-    rattus.reset();
-    assert.equal(0, countTrues(rattus.getAgit()));
+    reset();
+    expect(countTrues(getAgit())).to.equal(0);
   });
   it ("should be the right size", function() {
-    assert.equal(agitDim, rattus.getAgit().length);
+    expect(getAgit().length).to.equal(agitDim);
   })
 });
 
 describe ("Agitates properly", function() {
   it ("should agitate empty agit down to empty agit", function() {
-    rattus.reset();
-    rattus.agitate(false);
-    assert.equal(0, countTrues(rattus.getAgit()));
+    reset();
+    agitate(false);
+    expect(countTrues(getAgit())).to.equal(0);
   });
   it ("should agitate empty agit up to one true", function() {
-    rattus.agitate(true);
-    assert.equal(1, countTrues(rattus.getAgit()));
+    agitate(true);
+    expect(countTrues(getAgit())).to.equal(1);
   });
   it ("should agitate one true down to empty", function() {
-    rattus.agitate(false);
-    assert.equal(0, countTrues(rattus.getAgit()));
+    agitate(false);
+    expect(countTrues(getAgit())).to.equal(0);
   });
   it ("should agitate full array up to full array", function() {
-    for (v in rattus.getAgit()) {
-      rattus.agitate(true);
+    for (var v in getAgit()) {
+      agitate(true);
     }
-    assert.equal(agitDim, countTrues(rattus.getAgit()));
-    rattus.agitate(true);
-    assert.equal(agitDim, countTrues(rattus.getAgit()));
+    expect(countTrues(getAgit())).to.equal(agitDim);
+    agitate(true);
+    expect(countTrues(getAgit())).to.equal(agitDim);
   })
 });
