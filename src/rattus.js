@@ -25,7 +25,7 @@ var agitate = function(direction) {
 var interpret = function(input) {
   var norm = 0;
   for (var v in input) {
-    norm += Math.abs(v);
+    norm += Math.abs(input[v]);
   }
   if (norm % 1 < 0.5) {
     agitate(true);
