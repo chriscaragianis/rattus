@@ -31,15 +31,15 @@ var agitActions = [
   },
   function(index) {
     if (agit[index]) {
-      var up = (Math.random() * 16) - 8;
-      var left = (Math.random() * 16) - 8;
       clearInterval(positionInterval);
       positionInterval = setInterval(function() {
+        var up = (Math.random() * 16) - 8;
+        var left = (Math.random() * 16) - 8;
         $('#rat').css('transform', 'translate(' + up + 'px, ' + left +'px)');
         positionTimeout = setTimeout(function() {
         $('#rat').css('transform', 'translate(0,0)');
-        }, 90);
-      }, 99);
+      }, 70);
+    }, 140);
     } else {
       clearInterval(positionInterval);
     }
