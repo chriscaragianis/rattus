@@ -5,9 +5,14 @@ body {
 #rat {
   width: 50%;
   position: absolute;
+  top: 50vh;
   z-index: -1;
 }
 
 #caption {
   display: none;
+  position: absolute;
+  bottom: 0;
+  font-family: 'VT323', monospace;
+  font-size: 4rem;
 }
